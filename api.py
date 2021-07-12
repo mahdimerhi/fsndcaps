@@ -2,7 +2,7 @@ import os
 from flask import Flask, app, request, jsonify, abort
 import json
 from flask_cors import CORS
-from database.models import db_drop_and_create_all, setup_db, Drink
+from database.models import db_create_all, setup_db, Drink
 from auth.auth import AuthError, requires_auth
 
 
@@ -10,7 +10,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
     CORS(app)
-    db_drop_and_create_all()
+    db_create_all()
     return app
 
 
