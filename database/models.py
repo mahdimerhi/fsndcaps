@@ -1,18 +1,19 @@
 import os
+from sqlite3 import DatabaseError
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
 import json
-
-db = SQLAlchemy()
 
 '''
 setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
+DATABASE_URL='postgresql://tbfizanrqhwwxv:f5b737322c7482c9afd3c04d97de4759aee51de65424b42017203621293ea6f4@ec2-52-6-77-239.compute-1.amazonaws.com:5432/d3po500npucf2c'
 
+db = SQLAlchemy()
 
-def setup_db(app):
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
+def setup_db(app, database_path=DATABASE_URL):
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
