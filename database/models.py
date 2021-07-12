@@ -11,12 +11,12 @@ setup_db(app)
 
 #DATABASE_URL='postgresql://postgres:.@:5432/d3po500npucf2c'
 
-DATABASE_URL='postgresql://tbfizanrqhwwxv:f5b737322c7482c9afd3c04d97de4759aee51de65424b42017203621293ea6f4@ec2-52-6-77-239.compute-1.amazonaws.com:5432/d3po500npucf2c'
+DATABASE_URL='postgresql://xocklnnatyuyrk:5544d5b122944fc03f76cdb2d40dd9deefd4918473d19e9383d4c87de69b250d@ec2-34-204-128-77.compute-1.amazonaws.com:5432/d80cc4m5ebdm8t'
 
 db = SQLAlchemy()
 
-def setup_db(app, database_path=DATABASE_URL):
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_path
+def setup_db(app):
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
