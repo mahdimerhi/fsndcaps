@@ -9,9 +9,9 @@ setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
 
-DATABASE_URL='postgresql://postgres:.@:5432/d3po500npucf2c'
+#DATABASE_URL='postgresql://postgres:.@:5432/d3po500npucf2c'
 
-#DATABASE_URL='postgresql://tbfizanrqhwwxv:f5b737322c7482c9afd3c04d97de4759aee51de65424b42017203621293ea6f4@ec2-52-6-77-239.compute-1.amazonaws.com:5432/d3po500npucf2c'
+DATABASE_URL='postgresql://tbfizanrqhwwxv:f5b737322c7482c9afd3c04d97de4759aee51de65424b42017203621293ea6f4@ec2-52-6-77-239.compute-1.amazonaws.com:5432/d3po500npucf2c'
 
 db = SQLAlchemy()
 
