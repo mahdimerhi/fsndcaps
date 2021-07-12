@@ -26,6 +26,10 @@ app = create_app()
         or appropriate status code indicating reason for failure
 '''
 
+@app.route('/', methods=['POST', 'GET'])
+def health():
+    return jsonify("Healthy")
+
 
 @app.route('/drinks')
 def get_drinks():
