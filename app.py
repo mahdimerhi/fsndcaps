@@ -3,7 +3,7 @@ from flask import Flask, app, request, jsonify, abort, redirect
 import json
 from flask_cors import CORS
 from database.models import db_drop_and_create_all, setup_db, Drink
-from auth import AuthError, requires_auth
+from auth.auth import AuthError, requires_auth
 from server import *
 
 def create_app(test_config=None):
