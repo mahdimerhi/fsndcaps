@@ -31,29 +31,6 @@ auth0 = oauth.register(
 )
 
 
-@app.route('/login')
-def login():
-    return auth0.authorize_redirect(redirect_uri='https://fsndcaps.herokuapp.com/drinks')
-
-
-# Here we're using the /callback route.
-@app.route('/callback')
-def callback_handling():
-    # Handles response from token endpoint
-    auth0.authorize_access_token()
-    resp = auth0.get('userinfo')
-    userinfo = resp.json()
-
-    # Store the user information in flask session.
-    session['jwt_payload'] = userinfo
-    session['profile'] = {
-        'user_id': userinfo['sub'],
-        'name': userinfo['name'],
-        'picture': userinfo['picture']
-    }
-    return redirect('/dashboard')
-
-
 def requires_auth_2(f):
   @wraps(f)
   def decorated(*args, **kwargs):
@@ -63,20 +40,3 @@ def requires_auth_2(f):
     return f(*args, **kwargs)
 
   return decorated
-
-
-@app.route('/dashboard')
-@requires_auth_2
-def dashboard():
-    return render_template('dashboard.html',
-                           userinfo=session['profile'],
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
-
-
-@app.route('/logout')
-def logout():
-    # Clear session stored data
-    session.clear()
-    # Redirect user to logout endpoint
-    params = {'returnTo': url_for('login', _external=True), 'client_id': 'Tgci7nSzOpfgtTPh9KbEimofvOVXauFP'}
-    return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
