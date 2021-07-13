@@ -1,5 +1,5 @@
 import os
-from flask import Flask, app, request, jsonify, abort
+from flask import Flask, app, request, jsonify, abort, redirect
 import json
 from flask_cors import CORS
 from database.models import db_drop_and_create_all, setup_db, Drink
@@ -28,9 +28,9 @@ app = create_app()
 
 
 @app.route('/')
-def redirect():
+def re_direct():
     return redirect('/login')
-    
+
 
 @app.route('/drinks')
 def get_drinks():
