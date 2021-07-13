@@ -8,9 +8,10 @@ from auth.auth import AuthError, requires_auth
 
 def create_app(test_config=None):
     app = Flask(__name__)
+    db_drop_and_create_all()
     setup_db(app)
     CORS(app)
-    db_drop_and_create_all()
+
     return app
 
 
