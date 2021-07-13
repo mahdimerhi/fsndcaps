@@ -12,7 +12,7 @@ from flask import session
 from flask import url_for
 from authlib.integrations.flask_client import OAuth
 from six.moves.urllib.parse import urlencode
-from functools import wraps
+
 
 app = Flask(__name__)
 
