@@ -54,7 +54,7 @@ def callback_handling():
     return redirect('/dashboard')
 
 
-def requires_auth(f):
+def requires_auth_2(f):
   @wraps(f)
   def decorated(*args, **kwargs):
     if 'profile' not in session:
@@ -66,7 +66,7 @@ def requires_auth(f):
 
 
 @app.route('/dashboard')
-@requires_auth
+@requires_auth_2
 def dashboard():
     return render_template('dashboard.html',
                            userinfo=session['profile'],
