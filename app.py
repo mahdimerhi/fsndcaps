@@ -14,6 +14,8 @@ def create_app(test_config=None):
     return app
 
 
+app = create_app()
+
 # ROUTES
 '''
 @TODO implement endpoint
@@ -256,7 +258,6 @@ def handle_auth_error(ex):
     response.status_code = ex.status_code
     return response
 
-app = create_app()
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
