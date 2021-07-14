@@ -1,4 +1,6 @@
+from lib2to3.pgen2 import token
 import os
+from tokenize import Token
 from flask import Flask, app, request, jsonify, abort, redirect, session, url_for
 import json
 from flask_cors import CORS, cross_origin
@@ -55,29 +57,28 @@ def re_direct():
 @app.route('/login')
 @cross_origin()
 def login():
-    print('Audience: {}'.format(API_AUDIENCE)) 
     return auth0.authorize_redirect(
         audience=API_AUDIENCE,
         redirect_uri=CALLBACK_URL
-    	
 	)
 
 @app.route('/callback')
-@cross_origin()
-def post_login(): 
+@cross_origin
+def callback_handling():
+    # get authorization token
     token = auth0.authorize_access_token()
-    session['token'] = token['access_token']
-    print(session['token'])
-    return redirect('/drinks')
-
+    return jsonify({
+        'success': True,
+        'token': token['access_token']
+    }), 200
 
 @app.route('/logout')
 def log_out():
 	# clear the session
 	session.clear()
 	# redirect user to logout endpoint
-	params = {'returnTo': url_for('index', _external=True), 'client_id': CLIENT_ID}
-	return redirect('https://fsnd79.auth0.com' + '/v2/logout?' + urlencode(params))
+	params = {'returnTo':CALLBACK_URL, 'client_id': CLIENT_ID}
+	return redirect(AUTH0_DOMAIN + '/v2/logout?' + urlencode(params))
 
 
 # ROUTES
