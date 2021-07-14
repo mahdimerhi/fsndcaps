@@ -48,16 +48,16 @@ def after_request(response):
 	return response
 
 
-@app.route('/authorization/url')
-def generate_auth_url():
-    url = f'{AUTH0_DOMAIN}/authorize' \
-        f'?audience={API_AUDIENCE}' \
-        f'&response_type=token&client_id=' \
-        f'{CLIENT_ID}&redirect_uri=' \
-        f'{CALLBACK_URL}'
-    return jsonify({
-        'url': url
-    })
+# @app.route('/authorization/url')
+# def generate_auth_url():
+#     url = f'{AUTH0_DOMAIN}/authorize' \
+#         f'?audience={API_AUDIENCE}' \
+#         f'&response_type=token&client_id=' \
+#         f'{CLIENT_ID}&redirect_uri=' \
+#         f'{CALLBACK_URL}'
+#     return jsonify({
+#         'url': url
+#     })
 
 
 @app.route('/')
@@ -139,6 +139,7 @@ def get_drinks():
 
 @app.route('/drinks-detail')
 @requires_auth('get:drinks-detail')
+@cross_origin
 def drinks_detail(payload):
 
     drinks_all = Drink.query.all()
