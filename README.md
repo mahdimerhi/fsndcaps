@@ -40,6 +40,8 @@ This will install all of the required packages we selected within the `requireme
 
 ## Before running the server
 
+Uncomment line 26 in './app.py' in order to populate the database, and comment it again to prevent resetting it after any server restart.
+
 Ensure you have imported/run './setup.sh' to your environment.
 
 ## Running the server
