@@ -11,8 +11,6 @@ API_AUDIENCE = os.environ.get('API_AUDIENCE')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 CLIENT_ID = os.environ.get('CLIENT_ID')
 CALLBACK_URL = os.environ.get('CALLBACK_URL')
-API_BASE_URL = os.environ.get('API_BASE_URL')
-AUTH0_AUDIENCE = os.environ.get('coffeeshop')
 
 # AuthError Exception
 '''

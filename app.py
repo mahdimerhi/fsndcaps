@@ -30,7 +30,7 @@ auth0 = oauth.register(
     'auth0',
     client_id= CLIENT_ID,
     client_secret=SECRET_KEY,
-    api_base_url=API_BASE_URL,
+    api_base_url=AUTH0_DOMAIN,
     access_token_url='https://udacafe.eu.auth0.com/oauth/token',
     authorize_url='https://udacafe.eu.auth0.com/authorize',
     client_kwargs={
@@ -55,10 +55,10 @@ def re_direct():
 @app.route('/login')
 @cross_origin()
 def login():
-    print('Audience: {}'.format(AUTH0_AUDIENCE)) 
+    print('Audience: {}'.format(API_AUDIENCE)) 
     return auth0.authorize_redirect(
     	redirect_uri='%s/callback' %  CALLBACK_URL, 
-    	audience=AUTH0_AUDIENCE
+    	audience=API_AUDIENCE
 	)
 
 @app.route('/callback')
