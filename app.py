@@ -62,8 +62,9 @@ def generate_auth_url():
 
 @app.route('/')
 @cross_origin()
-def re_direct():
-    return redirect('/login')
+def index():
+    return 'healthy.'
+    #return redirect('/login')
 
 
 @app.route('/login')
