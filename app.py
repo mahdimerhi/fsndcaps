@@ -69,7 +69,10 @@ def re_direct():
 @app.route('/login')
 @cross_origin()
 def login():
-    return auth0.authorize_redirect('/authorization/url')
+    return auth0.authorize_redirect(
+        audience=API_AUDIENCE,
+        redirect_uri=CALLBACK_URL
+	)
 
 @app.route('/callback')
 @cross_origin
