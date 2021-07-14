@@ -21,7 +21,7 @@ We recommend working within a virtual environment whenever using Python for proj
 
 #### PIP Dependencies
 
-Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
+Once you have your virtual environment setup and running, install dependencies by running:
 
 ```bash
 pip install -r requirements.txt
@@ -37,6 +37,11 @@ This will install all of the required packages we selected within the `requireme
 
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
 
+
+## Before running the server
+
+Ensure you have imported/run './setup.sh' to your environment.
+
 ## Running the server
 
 Ensure you are working using your created virtual environment.
@@ -47,7 +52,7 @@ Each time you open a new terminal session, run:
 export FLASK_APP=api.py;
 ```
 
-To run the server (it will reload automatically since it is forced to run in debug mode in ./app.py'), execute:
+To run the server (it will reload automatically; it is forced to run in debug mode in the bottom of ./app.py'), execute:
 
 ```bash
 flask run
