@@ -48,9 +48,9 @@ def after_request(response):
 	return response
 
 
-@app.route("/authorization/url", methods=["GET"])
+@app.route('/authorization/url')
 def generate_auth_url():
-    url = f'https://{AUTH0_DOMAIN}/authorize' \
+    url = f'{AUTH0_DOMAIN}/authorize' \
         f'?audience={API_AUDIENCE}' \
         f'&response_type=token&client_id=' \
         f'{CLIENT_ID}&redirect_uri=' \
