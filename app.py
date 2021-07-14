@@ -10,14 +10,13 @@ from authlib.integrations.flask_client import OAuth
 from six.moves.urllib.parse import urlencode
 
 
-
 def create_app(test_config=None):
     app = Flask(__name__)
     app.secret_key = SECRET_KEY
     app.config['SECRET_KEY'] = SECRET_KEY
     setup_db(app)
     CORS(app)
-    #db_drop_and_create_all()
+    # db_drop_and_create_all()
     return app
 
 
@@ -30,7 +29,7 @@ oauth = OAuth(app)
 
 auth0 = oauth.register(
     'auth0',
-    client_id= CLIENT_ID,
+    client_id=CLIENT_ID,
     client_secret=SECRET_KEY,
     api_base_url=AUTH0_DOMAIN,
     access_token_url='https://udacafe.eu.auth0.com/oauth/token',
@@ -43,9 +42,11 @@ auth0 = oauth.register(
 
 @app.after_request
 def after_request(response):
-	response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
-	response.headers.add('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE')
-	return response
+    response.headers.add('Access-Control-Allow-Headers',
+                         'Content-Type,Authorization,true')
+    response.headers.add('Access-Control-Allow-Methods',
+                         'GET,PATCH,POST,DELETE')
+    return response
 
 
 # @app.route('/authorization/url')
@@ -64,7 +65,7 @@ def after_request(response):
 @cross_origin()
 def index():
     return 'healthy.'
-    #return redirect('/login')
+    # return redirect('/login')
 
 
 @app.route('/login')
@@ -73,7 +74,8 @@ def login():
     return auth0.authorize_redirect(
         audience=API_AUDIENCE,
         redirect_uri=CALLBACK_URL
-	)
+    )
+
 
 @app.route('/callback')
 @cross_origin()
@@ -86,13 +88,15 @@ def callback_handling():
         'token': token['access_token']
     }), 200
 
+
 @app.route('/logout')
 def log_out():
-	# clear the session
-	session.clear()
-	# redirect user to logout endpoint
-	params = {'returnTo':'https://fsndcaps.herokuapp.com/', 'client_id': CLIENT_ID}
-	return redirect(AUTH0_DOMAIN + '/v2/logout?' + urlencode(params))
+    # clear the session
+    session.clear()
+    # redirect user to logout endpoint
+    params = {'returnTo': 'https://fsndcaps.herokuapp.com/',
+              'client_id': CLIENT_ID}
+    return redirect(AUTH0_DOMAIN + '/v2/logout?' + urlencode(params))
 
 
 # ROUTES
@@ -139,19 +143,23 @@ def get_drinks():
 
 @app.route('/drinks-detail')
 @requires_auth('get:drinks-detail')
-@cross_origin
 def drinks_detail(payload):
 
-    drinks_all = Drink.query.all()
-    drinks = [drink.long() for drink in drinks_all]
+    try:
+        drinks_all = Drink.query.all()
+        drinks = [drink.long() for drink in drinks_all]
 
-    if len(drinks) == 0:
-        abort(404)
+        if len(drinks) == 0:
+            abort(404)
 
-    return jsonify({
-        'success': True,
-        'drinks': drinks
-    }), 200
+        return jsonify({
+            'success': True,
+            'drinks': drinks
+        }), 200
+
+    except Exception as e:
+        print(e)
+        abort(422)
 
 
 '''
