@@ -6,6 +6,8 @@ URL : https://fsndcaps.herokuapp.com/
 
 To signup/login and check JWT: https://fsndcaps.herokuapp.com/login
 
+To logout: https://fsndcaps.herokuapp.com/logout
+
 
 ### Installing Dependencies
 
@@ -31,13 +33,13 @@ This will install all of the required packages we selected within the `requireme
 
 - [Flask](http://flask.pocoo.org/) is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./src/database/models.py`. We recommend skimming this code first so you know how to interface with the Drink model.
+- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./database/models.py`.
 
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
 
 ## Running the server
 
-From within the `./src` directory first ensure you are working using your created virtual environment.
+Ensure you are working using your created virtual environment.
 
 Each time you open a new terminal session, run:
 
@@ -45,13 +47,11 @@ Each time you open a new terminal session, run:
 export FLASK_APP=api.py;
 ```
 
-To run the server, execute:
+To run the server (it will reload automatically since it is forced to run in debug mode in ./app.py'), execute:
 
 ```bash
-flask run --reload
+flask run
 ```
-
-The `--reload` flag will detect file changes and restart the server automatically.
 
 ## Tasks
 
@@ -80,5 +80,5 @@ The `--reload` flag will detect file changes and restart the server automaticall
    - Import the postman collection `./udacity-fsndcaps.postman_collection.json`
    - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
    - Run the collection and correct any errors.
-   - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
+
 
