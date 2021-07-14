@@ -62,7 +62,6 @@ def after_request(response):
 @app.route('/')
 def index():
     return 'healthy.'
-    # return redirect('/login')
 
 
 @app.route('/login')

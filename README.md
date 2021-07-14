@@ -2,6 +2,11 @@
 
 ## Getting Started
 
+URL : https://fsndcaps.herokuapp.com/
+
+To signup/login and check JWT: https://fsndcaps.herokuapp.com/login
+
+
 ### Installing Dependencies
 
 #### Python 3.9.4
