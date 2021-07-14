@@ -103,7 +103,7 @@ def log_out():
     # clear the session
     session.clear()
     # redirect user to logout endpoint
-    params = {'returnTo': 'https://fsndcaps.herokuapp.com/',
+    params = {'returnTo': 'https://fsndcaps.herokuapp.com/login',
               'client_id': CLIENT_ID}
     return redirect(AUTH0_DOMAIN + '/v2/logout?' + urlencode(params))
 
