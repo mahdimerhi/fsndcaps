@@ -1,9 +1,7 @@
-from lib2to3.pgen2 import token
 import os
-from tokenize import Token
-from flask import Flask, app, request, jsonify, abort, redirect, session, url_for
+from flask import Flask, app, request, jsonify, abort, redirect, session
 import json
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from database.models import db_drop_and_create_all, setup_db, Drink
 from auth.auth import *
 from authlib.integrations.flask_client import OAuth
@@ -16,6 +14,15 @@ def create_app(test_config=None):
     app.config['SECRET_KEY'] = SECRET_KEY
     setup_db(app)
     CORS(app)
+    
+    
+    '''
+    Uncomment the following line before first run
+    then comment it back in order not to reset
+    the databse each time the server restarts
+    '''
+    
+    
     # db_drop_and_create_all()
     return app
 
@@ -62,14 +69,12 @@ def after_request(response):
 
 
 @app.route('/')
-@cross_origin()
 def index():
     return 'healthy.'
     # return redirect('/login')
 
 
 @app.route('/login')
-@cross_origin()
 def login():
     return auth0.authorize_redirect(
         audience=API_AUDIENCE,
@@ -78,15 +83,19 @@ def login():
 
 
 @app.route('/callback')
-@cross_origin()
 def callback_handling():
     # get authorization token
-    token = auth0.authorize_access_token()
-    session['token'] = token['access_token']
-    return jsonify({
-        'success': True,
-        'token': token['access_token']
-    }), 200
+
+    try:
+        token = auth0.authorize_access_token()
+        session['token'] = token['access_token']
+        return jsonify({
+            'success': True,
+            'token': token['access_token']
+        }), 200
+
+    except Exception as e:
+        print(e)
 
 
 @app.route('/logout')
