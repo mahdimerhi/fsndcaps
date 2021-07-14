@@ -1,0 +1,739 @@
+{
+	"info": {
+		"_postman_id": "9c651195-4f3e-47e5-81ad-1172cdd508b7",
+		"name": "udacity-fsndcaps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "/drinks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains drinks array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.drinks).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks-detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks-detail",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks/1",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks/1",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "barista",
+			"item": [
+				{
+					"name": "/drinks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains drinks array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.drinks).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks-detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTA0MzkxMDc0OTU3NTk4NjM3OTM0IiwiYXVkIjpbImNvZmZlZXNob3AiLCJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNjI5NTE0OCwiZXhwIjoxNjI2MzgxNTQ4LCJhenAiOiJUZ2NpN25Tek9wZmd0VFBoOUtiRWltb2Z2T1ZYYXVGUCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmtzLWRldGFpbCJdfQ.Kv_QuGzOibijtB3YQ5GEX9OrGhOYAFU3sIRk_2aPtTsiREj1BDunZSijgDcgmRq-oIQABt13WMEY281eGVIu-GzD4EKAPUi51dLoUatbec4zi4iuZvjn2Y-NBoKrhz6yyAeMQfsNbuYfOsaubPLLXmDp1IiK6q5h3UcCaL625cLZVAqFFAXMufV34I07YOgQuvvWb0AmaoSAj3adzQtmrTmBRYyF-FGVrM4E8AxmeBi3Njl1mMgHYzkyFgT0wrQVHZqGKkLkjYmF3042LKoiHNKJNnIe0p6XdmkNVAT7GU1V1ByeYC_tsnoH6rGSwlg4q8ReM-hITmWj02U4CnQ6-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks-detail",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTA0MzkxMDc0OTU3NTk4NjM3OTM0IiwiYXVkIjpbImNvZmZlZXNob3AiLCJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNjI5NTE0OCwiZXhwIjoxNjI2MzgxNTQ4LCJhenAiOiJUZ2NpN25Tek9wZmd0VFBoOUtiRWltb2Z2T1ZYYXVGUCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmtzLWRldGFpbCJdfQ.Kv_QuGzOibijtB3YQ5GEX9OrGhOYAFU3sIRk_2aPtTsiREj1BDunZSijgDcgmRq-oIQABt13WMEY281eGVIu-GzD4EKAPUi51dLoUatbec4zi4iuZvjn2Y-NBoKrhz6yyAeMQfsNbuYfOsaubPLLXmDp1IiK6q5h3UcCaL625cLZVAqFFAXMufV34I07YOgQuvvWb0AmaoSAj3adzQtmrTmBRYyF-FGVrM4E8AxmeBi3Njl1mMgHYzkyFgT0wrQVHZqGKkLkjYmF3042LKoiHNKJNnIe0p6XdmkNVAT7GU1V1ByeYC_tsnoH6rGSwlg4q8ReM-hITmWj02U4CnQ6-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTA0MzkxMDc0OTU3NTk4NjM3OTM0IiwiYXVkIjpbImNvZmZlZXNob3AiLCJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNjI5NTE0OCwiZXhwIjoxNjI2MzgxNTQ4LCJhenAiOiJUZ2NpN25Tek9wZmd0VFBoOUtiRWltb2Z2T1ZYYXVGUCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmtzLWRldGFpbCJdfQ.Kv_QuGzOibijtB3YQ5GEX9OrGhOYAFU3sIRk_2aPtTsiREj1BDunZSijgDcgmRq-oIQABt13WMEY281eGVIu-GzD4EKAPUi51dLoUatbec4zi4iuZvjn2Y-NBoKrhz6yyAeMQfsNbuYfOsaubPLLXmDp1IiK6q5h3UcCaL625cLZVAqFFAXMufV34I07YOgQuvvWb0AmaoSAj3adzQtmrTmBRYyF-FGVrM4E8AxmeBi3Njl1mMgHYzkyFgT0wrQVHZqGKkLkjYmF3042LKoiHNKJNnIe0p6XdmkNVAT7GU1V1ByeYC_tsnoH6rGSwlg4q8ReM-hITmWj02U4CnQ6-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks/1",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTA0MzkxMDc0OTU3NTk4NjM3OTM0IiwiYXVkIjpbImNvZmZlZXNob3AiLCJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNjI5NTE0OCwiZXhwIjoxNjI2MzgxNTQ4LCJhenAiOiJUZ2NpN25Tek9wZmd0VFBoOUtiRWltb2Z2T1ZYYXVGUCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmtzLWRldGFpbCJdfQ.Kv_QuGzOibijtB3YQ5GEX9OrGhOYAFU3sIRk_2aPtTsiREj1BDunZSijgDcgmRq-oIQABt13WMEY281eGVIu-GzD4EKAPUi51dLoUatbec4zi4iuZvjn2Y-NBoKrhz6yyAeMQfsNbuYfOsaubPLLXmDp1IiK6q5h3UcCaL625cLZVAqFFAXMufV34I07YOgQuvvWb0AmaoSAj3adzQtmrTmBRYyF-FGVrM4E8AxmeBi3Njl1mMgHYzkyFgT0wrQVHZqGKkLkjYmF3042LKoiHNKJNnIe0p6XdmkNVAT7GU1V1ByeYC_tsnoH6rGSwlg4q8ReM-hITmWj02U4CnQ6-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks/1",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik4wTkNOVEEzTWpaQ1FUa3lRMEl6TmtORk0wWXhRVFUwT1RFMFFVVkNSRUpDT1RBME1EUXpOUSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktZnNuZC5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMDY3MTQ4MTQ0MTcwNjk3MTI4OTMiLCJhdWQiOlsiZGV2IiwiaHR0cHM6Ly91ZGFjaXR5LWZzbmQuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU2MDg5MDE2MCwiZXhwIjoxNTYwODk3MzYwLCJhenAiOiJPSjVwQk9ZSURFa09FVFVmUWo1ajdsSDZFTFcwMkd1MCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6ZHJpbmtzIiwiZ2V0OmRyaW5rcy1kZXRhaWwiXX0.j9ocW47_exQOkEa10ffh8eijGvrIMxnGRzCmbrXnfaN_8ULsgA7AnWYMtvP8RmPWvT9n8sReWnFuJajUHBUbnBO2GuJ4aM3-WDUBeJT0X_mpGUWs4lxaNTbIkWdiWPTsEiRnP3wT-dU_v3Olw2PB4UMajMIjSH-IdF2Y1CiJIOaM0gV44RGZRyRvj6C2_mOkMfoXxzw-HrVvTRCo1NcUPea5Bs04POni7azx-B7FstP_HLm0dEbbge4XbmovHwlIXknIoI8PbuGXeLBqE2hv8fErKFBuIykxzK0nErH5zSPCrkM-_9smb8TLGAH-E5j1KQb6SHDKtcV_QHnsUYFuXA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "manager",
+			"item": [
+				{
+					"name": "/drinks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains drinks array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.drinks).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks-detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains drinks array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.drinks).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwYzkwYmYwNmIxYWY5MDA2OGU2Y2UyOSIsImF1ZCI6WyJjb2ZmZWVzaG9wIiwiaHR0cHM6Ly91ZGFjYWZlLmV1LmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MjYyOTQ5NjgsImV4cCI6MTYyNjM4MTM2OCwiYXpwIjoiVGdjaTduU3pPcGZndFRQaDlLYkVpbW9mdk9WWGF1RlAiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.LN6yUVQHBvkEWl0bfkuqXHzdapvy-PKira5IGsCkkWnEGFiO7LoGmmYoDP5WSuqrcOjAxXSj13Ma6UHetwiUREwIpIexoc6Jew8mWPyi7fhkkQNanFHZXb2qE_Qgeiw37I_P6dspy9Shbjxsd1QXFHT_iE1M0iIT38AmPC8xRZ4yXI136eQmqnmf-cHeBvLB1DgLw3X-HLbMcbO0wFYYDLvFeoSZWNHIvFYZmb4U25_uDKdz4lTALyORJ8f8b17mcgtgDrVjxrKYflf6qBVTKCiDosNGuyttsx9J7cHDp23BciC4ejKg4j8SBQVcs-cDfAX_Pqfz6252ymLOaCERvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks-detail",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwYzkwYmYwNmIxYWY5MDA2OGU2Y2UyOSIsImF1ZCI6WyJjb2ZmZWVzaG9wIiwiaHR0cHM6Ly91ZGFjYWZlLmV1LmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MjYyOTQ5NjgsImV4cCI6MTYyNjM4MTM2OCwiYXpwIjoiVGdjaTduU3pPcGZndFRQaDlLYkVpbW9mdk9WWGF1RlAiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.LN6yUVQHBvkEWl0bfkuqXHzdapvy-PKira5IGsCkkWnEGFiO7LoGmmYoDP5WSuqrcOjAxXSj13Ma6UHetwiUREwIpIexoc6Jew8mWPyi7fhkkQNanFHZXb2qE_Qgeiw37I_P6dspy9Shbjxsd1QXFHT_iE1M0iIT38AmPC8xRZ4yXI136eQmqnmf-cHeBvLB1DgLw3X-HLbMcbO0wFYYDLvFeoSZWNHIvFYZmb4U25_uDKdz4lTALyORJ8f8b17mcgtgDrVjxrKYflf6qBVTKCiDosNGuyttsx9J7cHDp23BciC4ejKg4j8SBQVcs-cDfAX_Pqfz6252ymLOaCERvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Water1\",\n    \"recipe\": [{\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }]\n}"
+						},
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains drinks array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.drinks).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwYzkwYmYwNmIxYWY5MDA2OGU2Y2UyOSIsImF1ZCI6WyJjb2ZmZWVzaG9wIiwiaHR0cHM6Ly91ZGFjYWZlLmV1LmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MjYyOTQ5NjgsImV4cCI6MTYyNjM4MTM2OCwiYXpwIjoiVGdjaTduU3pPcGZndFRQaDlLYkVpbW9mdk9WWGF1RlAiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.LN6yUVQHBvkEWl0bfkuqXHzdapvy-PKira5IGsCkkWnEGFiO7LoGmmYoDP5WSuqrcOjAxXSj13Ma6UHetwiUREwIpIexoc6Jew8mWPyi7fhkkQNanFHZXb2qE_Qgeiw37I_P6dspy9Shbjxsd1QXFHT_iE1M0iIT38AmPC8xRZ4yXI136eQmqnmf-cHeBvLB1DgLw3X-HLbMcbO0wFYYDLvFeoSZWNHIvFYZmb4U25_uDKdz4lTALyORJ8f8b17mcgtgDrVjxrKYflf6qBVTKCiDosNGuyttsx9J7cHDp23BciC4ejKg4j8SBQVcs-cDfAX_Pqfz6252ymLOaCERvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Water12\"\n}"
+						},
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks/1",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtlZGJsRHk2OHhSbWQ3WXhZaWhvcyJ9.eyJpc3MiOiJodHRwczovL3VkYWNhZmUuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwYzkwYmYwNmIxYWY5MDA2OGU2Y2UyOSIsImF1ZCI6WyJjb2ZmZWVzaG9wIiwiaHR0cHM6Ly91ZGFjYWZlLmV1LmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MjYyOTQ5NjgsImV4cCI6MTYyNjM4MTM2OCwiYXpwIjoiVGdjaTduU3pPcGZndFRQaDlLYkVpbW9mdk9WWGF1RlAiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.LN6yUVQHBvkEWl0bfkuqXHzdapvy-PKira5IGsCkkWnEGFiO7LoGmmYoDP5WSuqrcOjAxXSj13Ma6UHetwiUREwIpIexoc6Jew8mWPyi7fhkkQNanFHZXb2qE_Qgeiw37I_P6dspy9Shbjxsd1QXFHT_iE1M0iIT38AmPC8xRZ4yXI136eQmqnmf-cHeBvLB1DgLw3X-HLbMcbO0wFYYDLvFeoSZWNHIvFYZmb4U25_uDKdz4lTALyORJ8f8b17mcgtgDrVjxrKYflf6qBVTKCiDosNGuyttsx9J7cHDp23BciC4ejKg4j8SBQVcs-cDfAX_Pqfz6252ymLOaCERvg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://fsndcaps.herokuapp.com/drinks/1",
+							"protocol": "https",
+							"host": [
+								"fsndcaps",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"drinks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik4wTkNOVEEzTWpaQ1FUa3lRMEl6TmtORk0wWXhRVFUwT1RFMFFVVkNSRUpDT1RBME1EUXpOUSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktZnNuZC5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMDY3MTQ4MTQ0MTcwNjk3MTI4OTMiLCJhdWQiOlsiZGV2IiwiaHR0cHM6Ly91ZGFjaXR5LWZzbmQuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU2MDg4OTU5NiwiZXhwIjoxNTYwODk2Nzk2LCJhenAiOiJPSjVwQk9ZSURFa09FVFVmUWo1ajdsSDZFTFcwMkd1MCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6ZHJpbmtzIiwiZ2V0OmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.Qk-5FC2X_RUkK00WKARYCKw_877XFuaT5ND3f3ObD9Ly1e1GMfJXhi3McV12binGGCw6x241erIjGB0t8WbWdU3bYpIVD1klZ64DVLQ8Q2LQ2NzB3eFEOgGLL85az1jIDbRiuATIRbbBOWILPJ6h6KR9L5hExklf2zuj3Bnwm7zMRmVpIJmjrUt4bWjtTOguOwJ0IVQsk4PDjGxzwfrUWFCFNDqN_u15JNLxeH21C-QvCpHs3D4Aodeh1qFUuWHfK_Gyfu91AitXPTVZRX9eZbUOVkGT3JMn4sKn9oGaKFTx2E-Y4DmoECG0uWImbX_wiRjx4aTeo7Q7hKSReMToPA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}
