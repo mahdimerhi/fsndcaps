@@ -5,7 +5,7 @@ from flask_cors import CORS
 from database.models import db_drop_and_create_all, setup_db, Drink
 from auth.auth import *
 from authlib.integrations.flask_client import OAuth
-from six.moves.urllib.parse import urlencode
+from urllib.parse import urlencode
 
 
 def create_app(test_config=None):
