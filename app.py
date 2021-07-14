@@ -48,6 +48,18 @@ def after_request(response):
 	return response
 
 
+@app.route("/authorization/url", methods=["GET"])
+def generate_auth_url():
+    url = f'https://{AUTH0_DOMAIN}/authorize' \
+        f'?audience={API_AUDIENCE}' \
+        f'&response_type=token&client_id=' \
+        f'{CLIENT_ID}&redirect_uri=' \
+        f'{CALLBACK_URL}'
+    return jsonify({
+        'url': url
+    })
+
+
 @app.route('/')
 @cross_origin()
 def re_direct():
@@ -67,6 +79,7 @@ def login():
 def callback_handling():
     # get authorization token
     token = auth0.authorize_access_token()
+    session['token'] = token['access_token']
     return jsonify({
         'success': True,
         'token': token['access_token']
