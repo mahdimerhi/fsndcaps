@@ -105,12 +105,15 @@ def check_permissions(permission, payload):
 
 
 def verify_decode_jwt(token):
-    # GET THE PUBLIC KEY FROM AUTH0
-    jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
-    jwks = json.loads(jsonurl.read())
-    print(jwks)
-    # GET THE DATA IN THE HEADER
-    unverified_header = jwt.get_unverified_header(token)
+    try:
+        # GET THE PUBLIC KEY FROM AUTH0
+        jsonurl = urlopen(f'{AUTH0_DOMAIN}/.well-known/jwks.json')
+        jwks = json.loads(jsonurl.read())
+        print(jwks)
+        # GET THE DATA IN THE HEADER
+        unverified_header = jwt.get_unverified_header(token)
+    except Exception as e:
+        print(e)
 
     # CHOOSE OUR KEY
     rsa_key = {'key'}
@@ -138,7 +141,7 @@ def verify_decode_jwt(token):
                 rsa_key,
                 algorithms=ALGORITHMS,
                 audience=API_AUDIENCE,
-                issuer='https://' + AUTH0_DOMAIN + '/'
+                issuer=AUTH0_DOMAIN + '/'
             )
 
             return payload
