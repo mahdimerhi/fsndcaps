@@ -76,7 +76,7 @@ def login():
 	)
 
 @app.route('/callback')
-@cross_origin
+@cross_origin()
 def callback_handling():
     # get authorization token
     token = auth0.authorize_access_token()
