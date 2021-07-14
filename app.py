@@ -57,8 +57,9 @@ def re_direct():
 def login():
     print('Audience: {}'.format(API_AUDIENCE)) 
     return auth0.authorize_redirect(
-    	redirect_uri='%s/callback' %  CALLBACK_URL, 
-    	audience=API_AUDIENCE
+        audience=API_AUDIENCE,
+        redirect_uri=CALLBACK_URL
+    	
 	)
 
 @app.route('/callback')
