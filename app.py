@@ -56,16 +56,7 @@ def after_request(response):
     return response
 
 
-# @app.route('/authorization/url')
-# def generate_auth_url():
-#     url = f'{AUTH0_DOMAIN}/authorize' \
-#         f'?audience={API_AUDIENCE}' \
-#         f'&response_type=token&client_id=' \
-#         f'{CLIENT_ID}&redirect_uri=' \
-#         f'{CALLBACK_URL}'
-#     return jsonify({
-#         'url': url
-#     })
+# ROUTES
 
 
 @app.route('/')
@@ -108,17 +99,6 @@ def log_out():
     return redirect(AUTH0_DOMAIN + '/v2/logout?' + urlencode(params))
 
 
-# ROUTES
-'''
-@TODO implement endpoint
-    GET /drinks
-        it should be a public endpoint
-        it should contain only the drink.short() data representation
-    returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
-        or appropriate status code indicating reason for failure
-'''
-
-
 @app.route('/drinks')
 def get_drinks():
 
@@ -138,16 +118,6 @@ def get_drinks():
     except Exception as e:
         print(e)
         abort(422)
-
-
-'''
-@TODO implement endpoint
-    GET /drinks-detail
-        it should require the 'get:drinks-detail' permission
-        it should contain the drink.long() data representation
-    returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
-        or appropriate status code indicating reason for failure
-'''
 
 
 @app.route('/drinks-detail')
@@ -171,17 +141,6 @@ def drinks_detail(payload):
         abort(422)
 
 
-'''
-@TODO implement endpoint
-    POST /drinks
-        it should create a new row in the drinks table
-        it should require the 'post:drinks' permission
-        it should contain the drink.long() data representation
-    returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the newly created drink
-        or appropriate status code indicating reason for failure
-'''
-
-
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drinks')
 def create_drink(payload):
@@ -203,19 +162,6 @@ def create_drink(payload):
     except Exception as e:
         print(e)
         abort(422)
-
-
-'''
-@TODO implement endpoint
-    PATCH /drinks/<id>
-        where <id> is the existing model id
-        it should respond with a 404 error if <id> is not found
-        it should update the corresponding row for <id>
-        it should require the 'patch:drinks' permission
-        it should contain the drink.long() data representation
-    returns status code 200 and json {"success": True, "drinks": drink} where drink is an array containing only the updated drink
-        or appropriate status code indicating reason for failure
-'''
 
 
 @app.route('/drinks/<int:id>', methods=['PATCH'])
@@ -247,18 +193,6 @@ def edit_drink(payload, id):
         abort(422)
 
 
-'''
-@TODO implement endpoint
-    DELETE /drinks/<id>
-        where <id> is the existing model id
-        it should respond with a 404 error if <id> is not found
-        it should delete the corresponding row for <id>
-        it should require the 'delete:drinks' permission
-    returns status code 200 and json {"success": True, "delete": id} where id is the id of the deleted record
-        or appropriate status code indicating reason for failure
-'''
-
-
 @app.route('/drinks/<int:id>', methods=['DELETE'])
 @requires_auth('delete:drinks')
 def delete_drinks(payload, id):
@@ -282,22 +216,6 @@ def delete_drinks(payload, id):
 
 
 # Error Handling
-
-'''
-@TODO implement error handlers using the @app.errorhandler(error) decorator
-    each error handler should return (with approprate messages):
-             jsonify({
-                    "success": False,
-                    "error": 404,
-                    "message": "resource not found"
-                    }), 404
-
-'''
-
-'''
-@TODO implement error handler for 404
-    error handler should conform to general task above
-'''
 
 
 @app.errorhandler(422)
