@@ -163,3 +163,6 @@ curl --request PATCH 'https://fsndcaps.herokuapp.com/drinks/1' \
 --data-raw '{
     "title": "Water"
 }'
+
+Sample response output:
+{"drinks":[{"id":1,"recipe":[{"color":"blue","parts":1}],"title":"Water"}],"success":true}
