@@ -23,7 +23,7 @@ def create_app(test_config=None):
     '''
     
     
-    # db_drop_and_create_all()
+    db_drop_and_create_all()
     return app
 
 
@@ -79,14 +79,10 @@ def callback_handling():
     try:
         token = auth0.authorize_access_token()
         session['token'] = token['access_token']
-
-        if not token:
-            return redirect('/drinks')
-
-        else:
-            return jsonify({
-                'success': True,
-                'token': token['access_token']
+        
+        return jsonify({
+            'success': True,
+            'token': token['access_token']
             }), 200
 
     except Exception as e:

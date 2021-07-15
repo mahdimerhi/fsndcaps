@@ -100,6 +100,15 @@ flask run
 
 @app.errorhandler decorators are used to format and return error responses as JSON objects. @requires_auth decorator are used for Authorization based on roles of the user. Two roles are assigned to this API: 'Manager' and 'Barista'. Public users can GET '/drinks', even if they are not registered fsndcaps users, but have limits on their navigation, i.e: public users can only access '/drinks' by GET.
 
+### All Endpoints
+
+GET '/drinks'
+POST '/drinks'
+PATCH '/drinks/1'
+DELETE '/drinks/1'
+
+
+
 # AS A PUBLIC USER:
 
 #### GET '/drinks'
