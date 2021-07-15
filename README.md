@@ -1,5 +1,12 @@
 # Coffee Shop Backend
 
+The goal of the Full Stack Web Developer ND program was to equip us, learners, with the skills we need to build database-backed APIs and web applications. This Coffeeshop backend application 'FSNDCAPS' is the conclusion of the Full Stack ND, and it explores all the main concepts including, but not limited to, python, database building and designing for software applications, creating and deploying database-backed web APIs, securing and managing user authentication, and access control for an application backend.
+
+FSNDCAPS is a web application created to help university students in accessing the live drinks menu of their favorite coffeeshop, and it is also a major tool for the coffeeshop itself where baristas and managers can have their roles in updating the universal menu on the spot! Managers have complete access over the application permissions, which allows them to complete their work effeciently and easily. Baristas have little access as not to overwhelm them with their profession.
+
+There is no frontend for this app yet, it can only be presently used to authenticate using Auth0 by entering credentials and retrieving a fresh token to use with curl or postman.
+
+
 ## Getting Started
 
 URL : https://fsndcaps.herokuapp.com/
@@ -196,9 +203,5 @@ curl --request DELETE 'https://fsndcaps.herokuapp.com/drinks/1' \
 
 Sample response output:
 {"delete":1,"success":true}
-
-
-
-
 
 
