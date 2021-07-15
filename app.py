@@ -168,19 +168,18 @@ def create_drink(payload):
 @app.route('/drinks/<int:id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
 def edit_drink(payload, id):
-    body = request.get_json()
-
-    title = body.get('title')
-    recipe = body.get('recipe')
 
     try:
+
         drink = Drink.query.filter(Drink.id == id).one_or_none()
+        body = request.get_json()
 
         if drink is None:
+            print('Drink ID does not exist.')
             abort(404)
 
-        drink.title = title
-        drink.recipe = json.dumps(recipe)
+        drink.title = body.get('title', drink.title)
+        drink.recipe = json.dumps(body.get('recipe'))
 
         drink.update()
 

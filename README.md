@@ -113,8 +113,53 @@ DELETE '/drinks/1'
 
 #### GET '/drinks'
 
-Returns a list of all available drinks belonging to the user, total number of products, and a success value.
+Returns a list of all available drinks belonging to the user, id number of the drink, recipe, title, and a success value.
 Sample curl:
+
 curl --request GET 'https://fsndcaps.herokuapp.com/drinks'
 
 Sample response output:
+{"drinks":[{"id":1,"recipe":[{"color":"blue","parts":1}],"title":"water"}],"success":true}
+
+
+# AS A MANAGER:
+
+#### GET '/drinks-detail'
+
+Returns a list of all available drinks belonging to the user, id number of the drink, detailed recipe, and a success value.
+Sample curl:
+
+curl -i -H "Content-Type: application/json" -H "Authorization: Bearer {INSERT_TOKEN_HERE}" https://fsndcaps.herokuapp.com/drinks-detail
+
+Sample response output:
+{"drinks":[{"id":1,"recipe":[{"color":"blue","name":"water","parts":1}],"title":"water"}],"success":true}
+
+#### POST '/drinks'
+
+Posts a drink with its details; title and recipe (name, color, parts). Returns the drink and a success value.
+Sample curl:
+
+curl --request POST "https://fsndcaps.herokuapp.com/drinks" \
+-H "Content-Type: application/json" \
+-H 'Authorization: Bearer {INSERT_TOKEN_HERE}' \
+--data-raw '{
+    "title": "Water1",
+    "recipe": [{
+        "name": "Water",
+        "color": "blue",
+        "parts": 1
+    }]
+}'
+
+Sample response output:
+{"drinks":[{"id":2,"recipe":[{"color":"blue","name":"Water","parts":1}],"title":"Water1"}],"success":true}
+
+
+#### PATCH '/drinks'
+
+curl --request PATCH 'https://fsndcaps.herokuapp.com/drinks/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer ' \
+--data-raw '{
+    "title": "Water"
+}'
