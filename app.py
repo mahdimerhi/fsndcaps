@@ -112,6 +112,7 @@ def get_drinks():
         drinks = [drink.short() for drink in drinks_all]
 
         if len(drinks) == 0:
+            print('No drinks available at the moment.')
             abort(404)
 
         return jsonify({

@@ -8,7 +8,6 @@ To signup/login and check JWT: https://fsndcaps.herokuapp.com/login
 
 To logout: https://fsndcaps.herokuapp.com/logout
 
-
 ### Installing Dependencies
 
 #### Python 3.9.4
@@ -37,7 +36,6 @@ This will install all of the required packages we selected within the `requireme
 
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
 
-
 ## Before running the server
 
 Uncomment line 26 in './app.py' in order to populate the database, and comment it again to prevent resetting it after any server restart.
@@ -51,15 +49,16 @@ Ensure you are working using your created virtual environment.
 Each time you open a new terminal session, run:
 
 Linux users:
+
 ```bash
 export FLASK_APP=api.py;
 ```
 
 Windows Users:
+
 ```bash
 set FLASK_APP=api.py;
 ```
-
 
 To run the server (it will reload automatically; it is forced to run in debug mode in the bottom of ./app.py'), execute:
 
@@ -95,34 +94,18 @@ flask run
    - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
    - Run the collection and correct any errors.
 
-
 ## API ARCHITECTURE AND TESTING
+
 ### Endpoint Library
 
-@app.errorhandler decorators are used to format and return error responses as JSON objects. @requires_auth decorator are used for Authorization based on roles of the user. Two roles are assigned to this API: 'Manager' and 'Barista'. Users who are neither managers nor baristas are considered public users, and have limited accessibility i.e: only GET '/drinks'.
+@app.errorhandler decorators are used to format and return error responses as JSON objects. @requires_auth decorator are used for Authorization based on roles of the user. Two roles are assigned to this API: 'Manager' and 'Barista'. Public users can GET '/drinks', even if they are not registered fsndcaps users, but have limits on their navigation, i.e: public users can only access '/drinks' by GET.
+
+# AS A PUBLIC USER:
 
 #### GET '/drinks'
+
 Returns a list of all available drinks belonging to the user, total number of products, and a success value.
-Sample curl: 
-curl -i -H "Content-Type: application/json" -H "Authorization: Bearer {INSERT_TOKEN_HERE}" https://fsndcaps.herokuapp.com/
+Sample curl:
+curl --request GET 'https://fsndcaps.herokuapp.com/drinks'
+
 Sample response output:
-{
-  "products": [
-    {
-      "date_purchased": "Thu, 12 May 2016 00:00:00 GMT",
-      "id": 2,
-      "name": "Printer",
-      "user_id": 2,
-      "warranty_end_date": "Tue, 12 May 2020 00:00:00 GMT"
-    },
-    {
-      "date_purchased": "Thu, 12 May 2016 00:00:00 GMT",
-      "id": 3,
-      "name": "Printer",
-      "user_id": 2,
-      "warranty_end_date": "Tue, 12 May 2020 00:00:00 GMT"
-    }
-  ],
-  "success": true,
-  "total_products": 2
-}
