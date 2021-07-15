@@ -104,14 +104,13 @@ flask run
 
 GET '/drinks'
 POST '/drinks'
-PATCH '/drinks/1'
-DELETE '/drinks/1'
+PATCH '/drinks/<int:id>'
+DELETE '/drinks/<int:id>'
 
 
+#### AS A PUBLIC USER:
 
-# AS A PUBLIC USER:
-
-#### GET '/drinks'
+# GET '/drinks'
 
 Returns a list of all available drinks belonging to the user, id number of the drink, recipe, title, and a success value.
 Sample curl:
@@ -121,10 +120,13 @@ curl --request GET 'https://fsndcaps.herokuapp.com/drinks'
 Sample response output:
 {"drinks":[{"id":1,"recipe":[{"color":"blue","parts":1}],"title":"water"}],"success":true}
 
+#### AS A BARISTA:
 
-# AS A MANAGER:
+# GET '/drinks'
 
-#### GET '/drinks-detail'
+Same as a public user.
+
+# GET '/drinks-detail'
 
 Returns a list of all available drinks belonging to the user, id number of the drink, detailed recipe, and a success value.
 Sample curl:
@@ -134,7 +136,17 @@ curl -i -H "Content-Type: application/json" -H "Authorization: Bearer {INSERT_TO
 Sample response output:
 {"drinks":[{"id":1,"recipe":[{"color":"blue","name":"water","parts":1}],"title":"water"}],"success":true}
 
-#### POST '/drinks'
+
+#### AS A MANAGER:
+
+# GET '/drinks'
+Same as a public user.
+
+# GET '/drinks-detail'
+
+Same as a Barista user.
+
+# POST '/drinks'
 
 Posts a drink with its details; title and recipe (name, color, parts). Returns the drink and a success value.
 Sample curl:
@@ -155,14 +167,38 @@ Sample response output:
 {"drinks":[{"id":2,"recipe":[{"color":"blue","name":"Water","parts":1}],"title":"Water1"}],"success":true}
 
 
-#### PATCH '/drinks'
+# PATCH '/drinks/<int:id>'
+Patches a drink with its details; title and recipe (name, color, parts). Returns the updated drink, its details and a success value.
+Sample curl:
 
 curl --request PATCH 'https://fsndcaps.herokuapp.com/drinks/1' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer ' \
+--header 'Authorization: Bearer {INSERT_TOKEN_HERE}' \
 --data-raw '{
-    "title": "Water"
-}'
+     "title": "Water_Long",
+     "recipe": [{
+         "name": "Water",
+         "color": "blue",
+         "parts": 2
+     }]
+ }'
 
 Sample response output:
-{"drinks":[{"id":1,"recipe":[{"color":"blue","parts":1}],"title":"Water"}],"success":true}
+{"drinks":[{"id":1,"recipe":[{"color":"blue","name":"Water","parts":2}],"title":"Water_Long"}],"success":true}
+
+
+# DELETE '/drinks/<int:id>'
+Deletes the drink of specified ID, returns success value and ID of the deleted drink.
+Sample curl:
+
+curl --request DELETE 'https://fsndcaps.herokuapp.com/drinks/1' \
+--header 'Authorization: Bearer {INSERT_TOKEN_HERE}'
+
+Sample response output:
+{"delete":1,"success":true}
+
+
+
+
+
+
