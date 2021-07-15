@@ -79,10 +79,15 @@ def callback_handling():
     try:
         token = auth0.authorize_access_token()
         session['token'] = token['access_token']
-        return jsonify({
-            'success': True,
-            'token': token['access_token']
-        }), 200
+
+        if not token:
+            return redirect('/drinks')
+
+        else:
+            return jsonify({
+                'success': True,
+                'token': token['access_token']
+            }), 200
 
     except Exception as e:
         print(e)

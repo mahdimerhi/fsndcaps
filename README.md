@@ -24,7 +24,7 @@ We recommend working within a virtual environment whenever using Python for proj
 Once you have your virtual environment setup and running, install dependencies by running:
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 This will install all of the required packages we selected within the `requirements.txt` file.
@@ -50,9 +50,16 @@ Ensure you are working using your created virtual environment.
 
 Each time you open a new terminal session, run:
 
+Linux users:
 ```bash
 export FLASK_APP=api.py;
 ```
+
+Windows Users:
+```bash
+set FLASK_APP=api.py;
+```
+
 
 To run the server (it will reload automatically; it is forced to run in debug mode in the bottom of ./app.py'), execute:
 
@@ -89,3 +96,33 @@ flask run
    - Run the collection and correct any errors.
 
 
+## API ARCHITECTURE AND TESTING
+### Endpoint Library
+
+@app.errorhandler decorators are used to format and return error responses as JSON objects. @requires_auth decorator are used for Authorization based on roles of the user. Two roles are assigned to this API: 'Manager' and 'Barista'. Users who are neither managers nor baristas are considered public users, and have limited accessibility i.e: only GET '/drinks'.
+
+#### GET '/drinks'
+Returns a list of all available drinks belonging to the user, total number of products, and a success value.
+Sample curl: 
+curl -i -H "Content-Type: application/json" -H "Authorization: Bearer {INSERT_TOKEN_HERE}" https://fsndcaps.herokuapp.com/
+Sample response output:
+{
+  "products": [
+    {
+      "date_purchased": "Thu, 12 May 2016 00:00:00 GMT",
+      "id": 2,
+      "name": "Printer",
+      "user_id": 2,
+      "warranty_end_date": "Tue, 12 May 2020 00:00:00 GMT"
+    },
+    {
+      "date_purchased": "Thu, 12 May 2016 00:00:00 GMT",
+      "id": 3,
+      "name": "Printer",
+      "user_id": 2,
+      "warranty_end_date": "Tue, 12 May 2020 00:00:00 GMT"
+    }
+  ],
+  "success": true,
+  "total_products": 2
+}
