@@ -14,18 +14,14 @@ def create_app(test_config=None):
     app.config['SECRET_KEY'] = SECRET_KEY
     setup_db(app)
     CORS(app)
-    
-    
+
     '''
     Uncomment the following line before first run
     then comment it back in order not to reset
     the databse each time the server restarts
     '''
-    
-    
-    #db_drop_and_create_all()
 
-
+    # db_drop_and_create_all()
 
     # AUTH0
 
@@ -43,23 +39,19 @@ def create_app(test_config=None):
         },
     )
 
-
     @app.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Headers',
-        'Content-Type,Authorization,true')
+                             'Content-Type,Authorization,true')
         response.headers.add('Access-Control-Allow-Methods',
-        'GET,PATCH,POST,DELETE')
+                             'GET,PATCH,POST,DELETE')
         return response
 
-
     # ROUTES
-
 
     @app.route('/')
     def index():
         return 'healthy.'
-
 
     @app.route('/login')
     def login():
@@ -68,7 +60,6 @@ def create_app(test_config=None):
             redirect_uri=CALLBACK_URL
         )
 
-
     @app.route('/callback')
     def callback_handling():
         # get authorization token
@@ -76,15 +67,14 @@ def create_app(test_config=None):
         try:
             token = auth0.authorize_access_token()
             session['token'] = token['access_token']
-            
+
             return jsonify({
                 'success': True,
                 'token': token['access_token']
-                }), 200
+            }), 200
 
         except Exception as e:
             print(e)
-
 
     @app.route('/logout')
     def log_out():
@@ -92,9 +82,8 @@ def create_app(test_config=None):
         session.clear()
         # redirect user to logout endpoint
         params = {'returnTo': 'https://fsndcaps.herokuapp.com/login',
-        'client_id': CLIENT_ID}
+                  'client_id': CLIENT_ID}
         return redirect(AUTH0_DOMAIN + '/v2/logout?' + urlencode(params))
-
 
     @app.route('/drinks')
     def get_drinks():
@@ -117,7 +106,6 @@ def create_app(test_config=None):
             print(e)
             abort(422)
 
-
     @app.route('/drinks-detail')
     @requires_auth('get:drinks-detail')
     def drinks_detail(payload):
@@ -137,7 +125,6 @@ def create_app(test_config=None):
         except Exception as e:
             print(e)
             abort(422)
-
 
     @app.route('/drinks', methods=['POST'])
     @requires_auth('post:drinks')
@@ -161,7 +148,6 @@ def create_app(test_config=None):
             print(e)
             abort(422)
 
-
     @app.route('/drinks/<int:id>', methods=['PATCH'])
     @requires_auth('patch:drinks')
     def edit_drink(payload, id):
@@ -169,26 +155,27 @@ def create_app(test_config=None):
         try:
 
             drink = Drink.query.filter(Drink.id == id).one_or_none()
-            body = request.get_json()
 
             if drink is None:
                 print('Drink ID does not exist.')
                 abort(404)
 
-            drink.title = body.get('title', drink.title)
-            drink.recipe = json.dumps(body.get('recipe'))
+            else:
+                body = request.get_json()
 
-            drink.update()
+                drink.title = body.get('title', drink.title)
+                drink.recipe = json.dumps(body.get('recipe'))
 
-            return jsonify({
-                'success': True,
-                'drinks': [drink.long()]
-            }), 200
+                drink.update()
+
+                return jsonify({
+                    'success': True,
+                    'drinks': [drink.long()]
+                }), 200
 
         except Exception as e:
             print(e)
-            abort(422)
-
+            abort(404)
 
     @app.route('/drinks/<int:id>', methods=['DELETE'])
     @requires_auth('delete:drinks')
@@ -211,9 +198,7 @@ def create_app(test_config=None):
             print(e)
             abort(404)
 
-
     # Error Handling
-
 
     @app.errorhandler(422)
     def unprocessable_entry(error):
@@ -223,7 +208,6 @@ def create_app(test_config=None):
             'message': 'Unprocessable Entry'
         }), 422
 
-
     @app.errorhandler(400)
     def bad_request(error):
         return jsonify({
@@ -231,9 +215,6 @@ def create_app(test_config=None):
             'error': 400,
             'message': 'Bad Request'
         }), 400
-
-
-
 
     @app.errorhandler(404)
     def not_found(error):
@@ -243,7 +224,6 @@ def create_app(test_config=None):
             'message': 'Resource Not Found'
         }), 404
 
-
     @app.errorhandler(500)
     def server_error(error):
         return jsonify({
@@ -252,12 +232,10 @@ def create_app(test_config=None):
             'message': "Internal Server Error"
         }), 500
 
-
     '''
     @TODO implement error handler for AuthError
         error handler should conform to general task above
     '''
-
 
     @app.errorhandler(AuthError)
     def handle_auth_error(ex):
