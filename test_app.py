@@ -86,7 +86,7 @@ class CoffeeShopTestCase(unittest.TestCase):
     def test_barista_get_drinks_detail(self):
         res = self.client().get('/drinks-detail', headers=Barista_Token)
         data = json.loads(res.data)
-        print(data)
+
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data["drinks"])
@@ -104,7 +104,27 @@ class CoffeeShopTestCase(unittest.TestCase):
                     "name": "water",
                     "parts": 2}})
         data = json.loads(res.data)
-        print(data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource Not Found')
+
+    # Test Barista has no access to delete drinks
+
+    def test_delete_drink_by_barista(self):
+        res = self.client().delete('/drinks/1', headers=Barista_Token)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(data['code'], 'unauthorized')
+        self.assertEqual(data['description'], 'Permission not found.')
+
+    # Test_404_delete_drink_not_exist
+
+    def test_404_delete_drink_not_exist(self):
+        res = self.client().delete('/drinks/1000', headers=Manager_Token)
+        data = json.loads(res.data)
+
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Resource Not Found')
@@ -122,24 +142,15 @@ class CoffeeShopTestCase(unittest.TestCase):
                     'name': 'water',
                     'parts': 1}})
         data = json.loads(res.data)
-        print(data)
         self.assertEqual(res.status_code, 404)
-        self.assertEqual(data['message'], 'Resource Not Found')
-
-    # Test_404_delete_drink_not_exist
-    def test_404_delete_drink_not_exist(self):
-        res = self.client().delete('/drinks/1000', headers=Manager_Token)
-        data = json.loads(res.data)
-
-        self.assertEqual(res.status_code, 404)
-        self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Resource Not Found')
 
     # Test_403_delete_drink_unauthorized
+
     def test_403_delete_drink_unauthorized(self):
         res = self.client().delete('/drinks/1', headers=Barista_Token)
         data = json.loads(res.data)
-        print(data)
+
         self.assertEqual(res.status_code, 403)
         self.assertEqual(data['description'], 'Permission not found.')
         self.assertEqual(data['code'], 'unauthorized')
@@ -159,20 +170,13 @@ class CoffeeShopTestCase(unittest.TestCase):
         self.assertEqual(data['description'], 'Permission not found.')
 
     # Test delete drink by Manager
+
     def test_delete_drink_by_manager(self):
         res = self.client().delete('/drinks/2', headers=Manager_Token)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-
-    # Test Barista has no access to delete drinks
-    def test_delete_drink_by_barista(self):
-        res = self.client().delete('/drinks/1', headers=Barista_Token)
-        data = json.loads(res.data)
-
-        self.assertEqual(res.status_code, 403)
-        self.assertEqual(data['success'], False)
 
     # Test add new drink by Manager
 
@@ -201,5 +205,6 @@ class CoffeeShopTestCase(unittest.TestCase):
 
 
 # Make the tests conveniently executable
+
 if __name__ == "__main__":
     unittest.main()
