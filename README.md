@@ -211,3 +211,11 @@ curl - -request DELETE 'https://fsndcaps.herokuapp.com/drinks/1' \
 
 Sample response output:
 {"delete": 1, "success": true}
+
+
+# Testing
+There are 19 unittests in test_app.py. To run this file simply use:
+```
+python test_app.py
+```
+These tests include one test for expected success and error behavior for each endpoint, and tests demonstrating role-based access control, where some endpoints are tested with and without the correct authorization.
