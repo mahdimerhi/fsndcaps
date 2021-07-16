@@ -68,7 +68,7 @@ export FLASK_APP=api.py;
 Windows Users:
 
 ```bash
-set FLASK_APP=api.py;
+set FLASK_APP=api.py
 ```
 
 To run the server(it will reload automatically; it is forced to run in debug mode in the bottom of . / app.py'), execute:
